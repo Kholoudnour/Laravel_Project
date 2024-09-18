@@ -17,7 +17,11 @@ class MessagesFactory extends Factory
     public function definition(): array
     {
         return [
-            //
-        ];
+            'sender_name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'subject' => fake()->title(),
+            'body' =>  fake()->text(),
+            'is_read' => fake()->numberBetween(0, 1),
+            ];
     }
 }

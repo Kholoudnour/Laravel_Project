@@ -34,7 +34,7 @@ Route::get('index',[PublicController::class,'index'])->name('index');
 Route::get('testimonials',[PublicController::class,'testimonials'])->name('testimonials');
 Route::get('topics/listing',[PublicController::class,'topicslisting'])->name('topics-listing');
 Route::get('category',[PublicController::class,'category'])->name('category');
-Route::get('topics/detail',[PublicController::class,'topicsdetail'])->name('topics-detail');
+Route::get('topics/detail/{slug}',[PublicController::class,'topicsdetail'])->name('topics-detail')->whereNumber('id');
 Route::get('contact',[PublicController::class,'contact'])->name('contact');
 
 // 'user' prefix 

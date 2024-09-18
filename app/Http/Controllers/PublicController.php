@@ -11,14 +11,15 @@ class PublicController extends Controller
 {
     public function index()
     {
-        
             $categories = Category::limit(5)->with('latest_topic')->get();
             
+            // dd($categories);
             $topics = Topic::with('category')
                 ->latest()
                 ->take(3)
                 ->get();
-                
+                //  dd($topics);
+   
             $featuredtopics = Topic::with('category')
                 ->where('trending', true)
                 ->limit(2)
@@ -46,7 +47,7 @@ class PublicController extends Controller
     public function topicslisting()
     {
         $topics = Topic::paginate(3);
-        $trendingtopics = Topic::orderBy('trending')->limit(2)->get();
+        $trendingtopics = Topic::orderBy('trending')->limit(1)->get();
         return view('topics-listing',compact('topics', 'trendingtopics'));
     }
 
@@ -57,12 +58,13 @@ class PublicController extends Controller
     }
 
 
-    public function topicsdetail()
+    public function topicsdetail($id)
     {
+        $topic = Topic::findOrFail($id);
         $topics = topic::get();
         $categories = Category::all();
         
-        return view('topics-detail',compact('topics', 'categories'));
+        return view('topics-detail',compact('topics', 'categories', 'topic'));
     }
 
 
@@ -93,7 +95,7 @@ class PublicController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**

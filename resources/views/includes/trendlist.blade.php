@@ -29,9 +29,9 @@
                             <div class="custom-block custom-block-overlay">
                                 <div class="d-flex flex-column h-100">
                                     <img src="{{asset('assets/images/businesswoman-using-tablet-analysis.jpg')}}" class="custom-block-image img-fluid" alt="">
-                                    @foreach($trendingtopics as $topic)
                                     <div class="custom-block-overlay-text d-flex">
                                         <div>
+                                            
                                             <h5 class="text-white mb-2">{{ $topic->title }}</h5>
 
                                             <p class="text-white">{{ Str::limit($topic->content, 50) }}</p>
@@ -41,7 +41,7 @@
 
                                         <span class="badge bg-finance rounded-pill ms-auto">25</span>
                                     </div>
-                                    @endforeach
+                                  
 
                                     <div class="social-share d-flex">
                                         <p class="text-white me-4">Share:</p>

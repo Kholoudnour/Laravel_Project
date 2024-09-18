@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('content');
-            $table->boolean('published')->default(false);
+            $table->boolean('published')->default(true);
             $table->string('image')->nullable();
              //$table->foreignId('adminID')->constrained('admins')->unique;
             $table->softDeletes(); 

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Testimonial;
+use App\Models\topic;
 
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,13 +17,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //  User::factory(10)->create();
-            //  Category::factory()->create(10);
-             
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Category::factory(5)->create();
+        topic::factory(10)->create();
         Testimonial::factory(10)->create();
+       
     }
 }
