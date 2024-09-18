@@ -3,7 +3,7 @@
 
 @include('admin.includes.head')
 @include('admin.includes.header')
-  
+@include('admin.includes.footer')
   <div class="container my-5">
     <div class="mx-2">
       <h2 class="fw-bold fs-2 mb-5 pb-2">Add Category</h2>
@@ -27,10 +27,3 @@
     </div>
   </div>
   </main>
-  <script src="assests/js/jquery.min.js"></script>
-  <script src="assests/js/bootstrap.bundle.min.js"></script>
-  <script src="assests/js/dataTables.min.js"></script>
-  <script src="assests/js/tables.js"></script>
-</body>
-
-</html>

@@ -29,8 +29,8 @@
 
 				<h3 class="fw-semibold mb-5">REGISERTATION FORM</h3>
 					<div class="form-group d-flex mb-3">
-						<input type="text" name="first_name" placeholder="First Name" class="form-control me-2">
-						<input type="text" name="last_name"  placeholder="Last Name" class="form-control">
+						<input type="text" name="firstname" placeholder="First Name" class="form-control me-2">
+						<input type="text" name="lastname"  placeholder="Last Name" class="form-control">
 					</div>
 					<div class="input-group mb-3">
 						<input type="text" name="username" placeholder="Username" class="form-control">
@@ -38,6 +38,10 @@
 					</div>
 					<div class="input-group  mb-3">
 						<input type="text" name="email" placeholder="Email Address" class="form-control">
+						<img src="{{asset('admin/assests/images/email-svgrepo-com.svg')}}" alt="" class="input-group-text">
+					</div>
+					<div class="input-group  mb-3">
+						<input type="text" name="phone" placeholder="010xxxxxxx" class="form-control">
 						<img src="{{asset('admin/assests/images/email-svgrepo-com.svg')}}" alt="" class="input-group-text">
 					</div>
 					<div class="input-group mb-3">

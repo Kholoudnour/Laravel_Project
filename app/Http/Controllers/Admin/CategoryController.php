@@ -33,11 +33,11 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'timestamp' => 'nullable|date',
+    
+
         ]);
         Category::create($data);
         return redirect()->route('categories.index');
-      
-
     }
 
     /**
@@ -45,8 +45,9 @@ class CategoryController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
+        $categories = Category::with('topics')->get();
+        return view('index', compact('categories'));
+     }
 
     /**
      * Show the form for editing the specified resource.
@@ -67,6 +68,8 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'timestamp' => 'nullable|date',
+            
+
         ]);
         Category::where('id', $id)->update($data);
         return redirect()->route('categories.index');

@@ -3,6 +3,7 @@
 
 @include('admin.includes.head')
 @include('admin.includes.header')
+@include('admin.includes.footer')
 
 <body>
 
@@ -46,10 +47,4 @@
             </div>
         </div>
     </div>
-    <script src="{{asset('admin/assests/js/jquery.min.js')}}"></script>
-    <script src="{{asset('admin/assests/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('admin/assests/js/dataTables.min.js')}}"></script>
-    <script src="{{asset('admin/assests/js/tables.js')}}"></script>
-</body>
-
-</html>
+ 

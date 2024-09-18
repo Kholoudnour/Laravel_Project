@@ -13,4 +13,13 @@ class Category extends Model
         'name',
         'timestamp',
     ];
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
+    public function latest_topic()
+    {
+        return $this->hasMany(topic::class)->latest()->take(3);
+    }
+
 }

@@ -6,7 +6,7 @@
 
 @section('content')
 @include('includes.testhead')
-@include('includes.testpage')
+@include('includes.testimonial')
 @endsection
 
 

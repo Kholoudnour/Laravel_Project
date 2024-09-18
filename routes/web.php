@@ -4,15 +4,16 @@ use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialControll
 use App\Http\Controllers\Admin\TopicController as AdminTopicController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\MessagesController as AdminMessagesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\TopicController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
 // 'admin' prefix 
 Route::prefix('admin') 
@@ -22,6 +23,11 @@ Route::get('register', [AuthController::class, 'registrationform'])->name('regis
 Route::post('register', [AuthController::class, 'register']);
 Route::get('login', [AuthController::class, 'loginform'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
+});
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/messages', [AdminMessagesController::class, 'index'])->name('messages.index');
+    Route::get('/messages/{id}', [AdminMessagesController::class, 'show'])->name('messages.show');
+    Route::delete('/messages/{id}', [AdminMessagesController::class, 'destroy'])->name('messages.destroy');
 });
 
 Route::get('index',[PublicController::class,'index'])->name('index');
@@ -52,6 +58,8 @@ Route::prefix('admin')
         Route::get('topic/{id}/edit', 'edit')->name('topic.edit')->whereNumber('id');
         Route::put('topic/{id}', 'update')->name('topic.update');
         Route::delete('topic/{id}', 'destroy')->name('topic.destroy');
+   
+        Route::get('topic/{id}', [adminTopicController::class, 'show'])->name('topic.show');
     });
 // 'testimonial' prefix 
 Route::prefix('admin') 
@@ -75,8 +83,5 @@ Route::prefix('admin')
         Route::put('categories/{id}', 'update')->name('categories.update');
         Route::delete('categories/{id}', 'destroy')->name('categories.destroy');
     });
-
-
-
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -17,7 +17,6 @@ class UserController extends Controller
     {
         $users = User::all();
         // dd($users); 
-
         return view('admin.users', compact('users'));
     }
 
@@ -26,11 +25,8 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        
-        
         $page = "Add User";
         return view('admin.add_user', compact(['page']));
-       
     }
 
     /**
@@ -44,13 +40,13 @@ class UserController extends Controller
                 'lastname' => 'required|string|max:255',
                 'username' => 'required|string|max:255|unique:users,username',
                 'email' => 'required|string|email|max:255|unique:users',
-                'phone' => 'required|string|max:255',
-                'password' => 'required|string|min:8',
+                'phone' => 'nullable|string|max:255',
+                'password' => 'required|string|min:3',
+                
             ]);
-            $data['active'] = isset($request->active) ? 1 : 0;
             $data['password'] = Hash::make($request['password']);
             $user= User::create($data);
-             return redirect()->route('admin.users.index');
+            return redirect()->route('admin.users.index');
         }
     }
 
@@ -67,7 +63,6 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        $users = User::all();
         $user = User::findOrFail($id);
         return view('admin.edit_user', compact('user'));  
       }
@@ -80,14 +75,17 @@ class UserController extends Controller
         $data = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username',
+            'username' => 'nullable|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,id,' . $id,
-            'active' => 'required:boolean',
-            'password' => 'nullable|string|min:8',
-          
+            'phone' => 'required|string|max:255',
+            'active' => 'nullable|boolean',
+            'password' => 'nullable|string|min:3',
         ]);
-
+        // dd($data); 
+        Log::info($request->all());
         $data['password'] = Hash::make($data['password']);
+        $data['active'] = $request->has('active') ? 1 : 0;
+        $user = User::findOrFail($id);
             User::where('id', $id)->update($data);
             return redirect()->route('admin.users.index');
     }

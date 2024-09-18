@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Topic;
+use App\Models\Category;
+
 use App\Traits\UploadFileTrait;
 
 class TopicController extends Controller
@@ -15,51 +18,47 @@ class TopicController extends Controller
     public function index()
     {
         {
-            // dd(config('view.paths'));
-           return view('admin.topic');
+            $categories = Category::with('topics')->get();
+
+        // return view('topics.index', compact('categories'));
+        $topics = topic::all();
+            return view('admin.topic',  compact('topics'));
         }
     }
-
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         {
-            // $categories = Category::get();
-            // $page = "Add Job";
-            // $current_user_fullname = "Engy";
-            return view('admin.Add_topic') ;
+            $categories = Category::get();
+            return view('admin.Add_topic', compact('categories')) ;
         }
     }
-
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        // {
-        //     $data = $request->validate([
-        //         'title' => 'required|string|max:255',
-        //         'location' => 'required|string|max:255',
-        //         'company_name' => 'required|string|max:255',
-        //         'job_nature' => 'required|string',
-        //         'Vacancy' => 'required|integer|max:255',
-        //         'description' => 'required|string|max:1000',
-        //         'min_salary' => 'nullable|numeric',
-        //         'max_salary' => 'nullable|numeric',
-        //         // 'salary' => 'required|numeric',
-        //         'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        //         'category_id' => 'required|exists:categories,id',
-        //     ]);
-        //     $data['published'] = isset($request->published);
-        //     $data['img'] = $this->uploadFile($request->img, 'assets/img/job/');
-    
-        //     Job::create($data);
-        //     // return redirect()->route('jobs');
-        //     return redirect()->route('jobs.index');
-        // }
+        // dd($request->all());
+
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'content' => 'required|string',
+            'trending' => 'nullable|boolean',
+            'published' => 'nullable|boolean',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'category_id' => 'nullable|exists:categories,id',
+          
+        ]);
+           // Set the checkbox values properly
+           $data['trending'] = $request->has('trending');
+           $data['published'] = $request->has('published');
+           $data['image'] = $this->uploadFile($request->image, 'admin/assests/images/topics');
+        Topic::create($data);
+        return redirect()->route('topic.index');
     }
 
     /**
@@ -67,26 +66,21 @@ class TopicController extends Controller
      */
     public function show(string $id)
     {
-        // {
-        //     // $job = Job::findOrFail($id);
-         return view('topic_details');
-        // }
+        $topic = Topic::findOrFail($id);
+        return view('topic.show', compact('topic'));
+       
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        // {
-        //     $job = Job::findOrFail($id);
-        //     $categories = Category::select('id', 'name')->get();
-        //     $page = "Add Category";
-        //     $current_user_fullname = "Engy";
-            return view('admin.Edit_topic');
-        //     // $categories = Category::all();
-    
-        // }
+    {          
+        $categories = Category::get();
+        // $categories = Category::select('id', 'name')->get();
+        $topic = Topic::findOrFail($id);
+        return view('admin.edit_topic', compact('topic', 'categories', ));
+        
     }
 
     /**
@@ -94,40 +88,29 @@ class TopicController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // {
-        //     $data = $request->validate([
-        //         'title' => 'required|string|max:255',
-        //         'location' => 'required|string|max:255',
-        //         'company_name' => 'required|string|max:255',
-        //         'job_nature' => 'required|string',
-        //         'Vacancy' => 'required|integer|max:255',
-        //         'description' => 'required|string|max:1000',
-        //         'min_salary' => 'nullable|numeric',
-        //         'max_salary' => 'nullable|numeric',
-        //         // 'salary' => 'required|numeric',
-        //         'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        //         'category_id' => 'required|exists:categories,id',
-        //     ]);
-        //     $data['published'] = isset($request->published);
-    
-        //     ///
-        //     if ($request->hasFile('img')) {
-        //         $data['img'] = $this->uploadFile($request->img, 'assets/img/job/');
-        //     }
-        //     Job::where('id', $id)->update($data);
-    
-        //     return redirect()->route('jobs.index');
-        // }
+        $data = $request->validate([
+            'title' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'content' => 'required|string',
+            'trending' => 'nullable|boolean',
+            'published' => 'nullable|boolean',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'category_id' => 'nullable|exists:categories,id',
+        ]);
+       
+        $data['published'] = isset($request->published);
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->uploadFile($request->image, 'admin/assests/images/topics');
+        }
+        Topic::where('id', $id)->update($data);
+        return redirect()->route('topic.index');
     }
-
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        // {
-        //     Job::where('id', $id)->delete();
-        //     return redirect()->route('jobs.index');
-        // }
+    { 
+        Topic::where('id', $id)->delete(); 
+        return redirect()->route('topic.index'); 
     }
 }

@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->timestamps();
+            $table->unsignedBigInteger('category_id'); // Add the column after 'title'
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade'); // Set up foreign key constraint
         });
     }
 
@@ -23,6 +25,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categories');
+        Schema::table('topics', function (Blueprint $table) {
+            $table->dropForeign(['category_id']); // Drop the foreign key first
+            $table->dropColumn('category_id'); // Then drop the column
+        });
     }
 };

@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('testimonials', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('content');
+            $table->boolean('published')->default(false);
+            $table->string('image')->nullable();
+             //$table->foreignId('adminID')->constrained('admins')->unique;
+            $table->softDeletes(); 
             $table->timestamps();
         });
     }
@@ -22,6 +28,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('testimonials');
+        Schema::table('testimonials', function (Blueprint $table) {
+            $table->dropSoftDeletes(); 
+        });
     }
+
 };

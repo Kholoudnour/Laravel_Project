@@ -3,6 +3,7 @@
 
 @include('admin.includes.head')
 @include('admin.includes.header')
+@include('admin.includes.footer')
 
 <body>
  
@@ -10,7 +11,7 @@
         <div class="mx-2">
             <div class="row justify-content-between mb-2 pb-2">
                 <h2 class="fw-bold fs-2 col-auto">All Testimonials</h2>
-                <a href="add_testimonial.html" class="btn btn-link  link-dark fw-semibold col-auto me-3">➕Add new testimonial</a>
+                <a href="{{ route('testimonials.create') }}" class="btn btn-link  link-dark fw-semibold col-auto me-3">➕Add new testimonial</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-hover display" id="_table">
@@ -25,47 +26,24 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach($testimonials as $testimonial)
                         <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td>Jhon Doe</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>YES</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_testimonial.html"><img src="{{asset('admin/assests/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('admin/assests/images/trash-can-svgrepo-com.svg')}}"></a></td>
+                            <th scope="row">~{{$testimonial['created_at']}}</th>
+                            <td>{{$testimonial['name']}}</td>
+                            <td>{{Str::limit($testimonial['content'], 10)}}...</td>
+                            <td>{{$testimonial['published']== 'yes' ? 'Yes' : 'No' }}</td>
+                            <td class="text-center"><a class="text-decoration-none text-dark" href="{{route('testimonials.edit',$testimonial['id'])}}"><img src="{{asset('admin/assests/images/edit-svgrepo-com.svg')}}"></a></td>
+                            <td>
+                            <form action="{{route('testimonials.destroy',$testimonial['id'])}}" method="post">
+                      @csrf
+                      @method('DELETE')
+                     <button type="submit" value="delete" onclick="return confirm('Are you sure ?')"
+                            class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('admin/assests/images/trash-can-svgrepo-com.svg')}}"></a></td>
                         </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td>Jhon Doe</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>YES</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_testimonial.html"><img src="{{asset('admin/assests/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('admin/assests/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td>Jhon Doe</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>YES</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_testimonial.html"><img src="{{asset('admin/assests/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('admin/assests/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">18 Jul 2024</th>
-                            <td>Jhon Doe</td>
-                            <td>Lorem ipsum dolor sit amet consectetur...</td>
-                            <td>YES</td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="edit_testimonial.html"><img src="{{asset('admin/assests/images/edit-svgrepo-com.svg')}}"></a></td>
-                            <td class="text-center"><a class="text-decoration-none text-dark" href="#"><img src="{{asset('admin/assests/images/trash-can-svgrepo-com.svg')}}"></a></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <script src="{{asset('admin/assests/js/jquery.min.js')}}"></script>
-    <script src="{{asset('admin/assests/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('admin/assests/js/dataTables.min.js')}}"></script>
-    <script src="{{asset('admin/assests/js/tables.js')}}"></script>
-</body>
-
-</html>
+ 

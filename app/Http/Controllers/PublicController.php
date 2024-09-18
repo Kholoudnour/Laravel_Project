@@ -3,23 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Testimonial;
+use App\Models\Topic;
+use App\Models\Category;
 
 class PublicController extends Controller
 {
     public function index()
     {
-        return view('index');
-    }
+        
+            $categories = Category::limit(5)->with('latest_topic')->get();
+            
+            $topics = Topic::with('category')
+                ->latest()
+                ->take(3)
+                ->get();
+                
+            $featuredtopics = Topic::with('category')
+                ->where('trending', true)
+                ->limit(2)
+                ->get();
+                
+            $testimonials = Testimonial::where('published', 1)
+                ->latest()
+                ->take(3)
+                ->get();
+                
+            return view('index', compact('testimonials', 'topics', 'categories', 'featuredtopics'));
+        }
 
     public function testimonials()
-    {
-        return view('testimonials');
+    {  
+        $testimonials = Testimonial::all(); 
+        $testimonials = Testimonial::where('published', 1)
+            ->latest()
+            ->take('3')
+            ->get();
+        return view('testimonials', compact('testimonials'));
     }
 
 
     public function topicslisting()
     {
-        return view('topics-listing');
+        $topics = Topic::paginate(3);
+        $trendingtopics = Topic::orderBy('trending')->limit(2)->get();
+        return view('topics-listing',compact('topics', 'trendingtopics'));
     }
 
 
@@ -31,7 +59,10 @@ class PublicController extends Controller
 
     public function topicsdetail()
     {
-        return view('topics-detail');
+        $topics = topic::get();
+        $categories = Category::all();
+        
+        return view('topics-detail',compact('topics', 'categories'));
     }
 
 

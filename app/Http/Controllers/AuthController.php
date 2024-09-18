@@ -21,10 +21,11 @@ class AuthController extends Controller
      public function register(Request $request)
      {
          $validator = Validator::make($request->all(), [
-             'first_name' => 'required|string|max:255',
-             'last_name' => 'required|string|max:255',
+             'firstname' => 'required|string|max:255',
+             'lastname' => 'required|string|max:255',
              'username' => 'required|string|unique:users|max:255',
              'email' => 'required|string|email|unique:users|max:255',
+             'phone' => 'nullable|string|max:255',
              'password' => 'required|string|min:8|confirmed',
          ]);
  
@@ -33,14 +34,15 @@ class AuthController extends Controller
         //  }
  
          User::create([
-             'first_name' => $request->first_name,
-             'last_name' => $request->last_name,
+             'firstname' => $request->firstname,
+             'lastname' => $request->lastname,
              'username' => $request->username,
              'email' => $request->email,
+             'phone' => $request->phone,
              'password' => Hash::make($request->password),
          ]);
  
-         return redirect()->route('admin.login')->with('success', 'Registration successful. Please login.');
+         return redirect()->route('admin.users.index');
      }
     
      public function loginform()

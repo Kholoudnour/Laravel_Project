@@ -2,7 +2,8 @@
 <html lang="en">
 @include('admin.includes.head')
 @include('admin.includes.header')
-  
+@include('admin.includes.footer')
+ 
           <div class="container my-5">
           <div class="mx-2">
           <h2 class="fw-bold fs-2 mb-5 pb-2">Add USER</h2>
@@ -26,7 +27,7 @@
           <div class="form-group mb-3 row">
           <label for="" class="form-label col-md-2 fw-bold text-md-end">UserName:</label>
           <div class="col-md-10">
-          <input type="text" name="username"placeholder="e.g. Jhon33" class="form-control py-2" value="{{old('usertname')}}" />
+          <input type="text" name="username"placeholder="e.g. Jhon33" class="form-control py-2" value="{{old('username')}}" />
             @error('username')
 					<div class="alert alert-warning">{{$message}}</div>
 						@enderror
@@ -77,10 +78,4 @@
     </div>
   </div>
   </main>
-  <script src="{{asset('admin/assests/js/jquery.min.js')}}"></script>
-  <script src="{{asset('admin/assests/js/bootstrap.bundle.min.js')}}"></script>
-  <script src="{{asset('admin/assests/js/dataTables.min.js')}}"></script>
-  <script src="{{asset('admin/assests/js/tables.js')}}"></script>
-</body>
-
-</html>
+ 

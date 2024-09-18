@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+@include('admin.includes.head')
+@include('admin.includes.header')
+@include('admin.includes.footer')
 
 
 
@@ -9,7 +12,7 @@
         <div class="mx-2">
             <div class="row justify-content-between mb-2 pb-2">
                 <h2 class="fw-bold fs-2 col-auto">Topic Details</h2>
-                <a href="add_topic.html" class="btn btn-link  link-dark fw-semibold col-auto me-3">➕Add new topic</a>
+                <a href="{{ route('topic.create') }}" class="btn btn-link  link-dark fw-semibold col-auto me-3">➕Add new topic</a>
             </div>
             <div class="p-5">
                 <div class="container-fluid g-0 pt-3 pb-5 px-lg-5 px-md-3 px-1">
@@ -91,10 +94,4 @@
               </div>
         </div>
     </div>
-    <script src="{{asset('admin/assests/js/jquery.min.js')}}"></script>
-    <script src="{{asset('admin/assests/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('admin/assests/js/dataTables.min.js')}}"></script>
-    <script src="{{asset('admin/assests/js/tables.js')}}"></script>
-</body>
-
-</html>
+   

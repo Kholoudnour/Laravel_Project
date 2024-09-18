@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('topics', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->unsignedBigInteger('category_id');
+            $table->string('category');
+            $table->text('content');
+            $table->boolean('trending');
+            $table->boolean('published');
+            $table->string('image')->nullable();
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
         });
     }
 

@@ -4,7 +4,7 @@
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="{{ route('index') }}">
                 <i class="bi-back"></i>
                 <span>Topic</span>
             </a>
@@ -50,17 +50,17 @@
                             data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
 
                         <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="navbarLightDropdownMenuLink">
-                            <li><a class="dropdown-item" href="contact.html">Contact Us</a></li>
-                            <li><a class="dropdown-item" href="testimonials.html">Our Client Says</a></li>
-                            <li><a class="dropdown-item" href="topics-listing.html">Topics Listing</a></li>
-                            <li><a class="dropdown-item" href="topics-detail.html">Topics details</a></li>
+                            <li><a class="dropdown-item" href="{{ route('contact') }}">Contact Us</a></li>
+                            <li><a class="dropdown-item" href="{{ route('testimonials') }}">Our Client Says</a></li>
+                            <li><a class="dropdown-item" href="t{{ route('topics-listing') }}">Topics Listing</a></li>
+                            <li><a class="dropdown-item" href="{{ route('topics-detail') }}">Topics details</a></li>
                             <li><a class="dropdown-item" href="404.html">404 page</a></li>
                         </ul>
                     </li>
                 </ul>
 
                 <div class="d-none d-lg-block">
-                    <a href="../admin/register.html" class="navbar-icon bi-person smoothscroll"></a>
+                    <a href="{{ route('register') }}" class="navbar-icon bi-person smoothscroll"></a>
                 </div>
             </div>
         </div>
