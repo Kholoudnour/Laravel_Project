@@ -6,7 +6,7 @@
                     <div class="col-lg-4 col-12 mb-4 mb-lg-1">
                         <div class="custom-block custom-block-overlay">
                             <div class="d-flex flex-column h-100">
-                                <img src="{{ asset($topic->image) }}" class="custom-block-image img-fluid" alt="{{ $topic->title }}">
+                                <img src="{{ asset('admin/assests/images/topics/' . $topic->image) }}" class="custom-block-image img-fluid" alt="{{ $topic->title }}">
 
                                 <div class="custom-block-overlay-text d-flex">
                                     <div>
@@ -14,7 +14,7 @@
 
                                         <p class="text-white">{{ Str::limit($topic->content, 100) }}</p>
 
-                                        <a href="{{ route('topic.index', $topic->id) }}" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
+                                        <a href="{{ route('topics-detail', $topic->id) }}" class="btn custom-btn mt-2 mt-lg-3">Learn More</a>
                                     </div>
 
                                     <span class="badge bg-finance rounded-pill ms-auto">{{ $topic->views_count }}</span>
@@ -47,7 +47,7 @@
                 @else {{-- Other featured topics --}}
                     <div class="col-lg-4 col-12 mb-4 mb-lg-0">
                         <div class="custom-block bg-white shadow-lg">
-                            <a href="{{ route('topic.index', $topic->id) }}">
+                            <a href="{{ route('topics-detail', $topic->id) }}">
                                 <div class="d-flex">
                                     <div>
                                         <h5 class="mb-2">{{ $topic->title }}</h5>
@@ -58,7 +58,7 @@
                                     <span class="badge bg-design rounded-pill ms-auto">{{ $topic->views_count }}</span>
                                 </div>
 
-                                <img src="{{ asset($topic->image) }}" class="custom-block-image img-fluid" alt="{{ $topic->title }}">
+                                <img src="{{ asset('admin/assests/images/topics/' . $topic->image) }}" class="custom-block-image img-fluid" alt="{{ $topic->title }}">
                             </a>
                         </div>
                     </div>

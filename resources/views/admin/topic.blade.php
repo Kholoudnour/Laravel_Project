@@ -24,6 +24,7 @@
                             <th scope="col">No. of views</th>
                             <th scope="col">Published</th>
                             <th scope="col">Trending</th>
+                            <th scope="col">Show</th>
                             <th scope="col">Edit</th>
                             <th scope="col">Delete</th>
                         </tr>
@@ -38,6 +39,8 @@
                             <td>{{ $topic->views ?? 0 }}</td>
                             <td>{{$topic['published']=="1" ? "Yes": "NO"}}</td> 
                             <td>{{$topic['trending']=="1" ? "Yes": "NO"}}</td>
+                            <td><a href= "{{route('topic.show', $topic['id'])}}">Show</a></td>
+
                             <td class="text-center"><a class="text-decoration-none text-dark" href="{{ route('topic.edit', $topic->id) }}"><img src="{{asset('admin/assests/images/edit-svgrepo-com.svg')}}"></a></td>
                             <td class="text-center">
                             <form action="{{route('topic.destroy',$topic['id'])}}" method="post">

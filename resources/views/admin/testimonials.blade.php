@@ -31,7 +31,7 @@
                             <th scope="row">~{{$testimonial['created_at']}}</th>
                             <td>{{$testimonial['name']}}</td>
                             <td>{{Str::limit($testimonial['content'], 10)}}...</td>
-                            <td>{{$testimonial['published']== 'yes' ? 'Yes' : 'No' }}</td>
+                            <td>{{$testimonial['published']== '1' ? "Yes" : "No" }}</td>
                             <td class="text-center"><a class="text-decoration-none text-dark" href="{{route('testimonials.edit',$testimonial['id'])}}"><img src="{{asset('admin/assests/images/edit-svgrepo-com.svg')}}"></a></td>
                             <td>
                             <form action="{{route('testimonials.destroy',$testimonial['id'])}}" method="post">

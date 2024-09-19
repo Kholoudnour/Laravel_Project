@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Category;
 
-use App\Traits\UploadFileTrait;
+use App\Traits\Uploadfiletrait;
 
 class TopicController extends Controller
 {
@@ -53,12 +53,11 @@ class TopicController extends Controller
             'category_id' => 'nullable|exists:categories,id',
           
         ]);
-           // Set the checkbox values properly
-           $data['trending'] = $request->has('trending');
-           $data['published'] = $request->has('published');
-           $data['image'] = $this->uploadFile($request->image, 'admin/assests/images/topics');
-        Topic::create($data);
-        return redirect()->route('topic.index');
+            $data['image'] = $this->uploadFile($request->image, 'admin/assests/images/topics');
+            $data['trending'] = $request->has('trending');
+            $data['published'] = $request->has('published');
+            Topic::create($data);
+            return redirect()->route('topic.index');
     }
 
     /**
@@ -67,8 +66,7 @@ class TopicController extends Controller
     public function show(string $id)
     {
         $topic = Topic::findOrFail($id);
-        return view('topic.show', compact('topic'));
-       
+        return view('admin.topic_show', compact('topic')); 
     }
 
     /**
@@ -97,11 +95,10 @@ class TopicController extends Controller
             'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'category_id' => 'nullable|exists:categories,id',
         ]);
-       
-        $data['published'] = isset($request->published);
         if ($request->hasFile('image')) {
             $data['image'] = $this->uploadFile($request->image, 'admin/assests/images/topics');
-        }
+            }
+        $data['published'] = isset($request->published);
         Topic::where('id', $id)->update($data);
         return redirect()->route('topic.index');
     }
@@ -113,4 +110,5 @@ class TopicController extends Controller
         Topic::where('id', $id)->delete(); 
         return redirect()->route('topic.index'); 
     }
+
 }

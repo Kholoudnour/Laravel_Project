@@ -78,6 +78,7 @@
                 <input type="hidden" name="active" value="0"> <!-- Hidden field for unchecked state -->
                 <input type="checkbox" name="active" value="1" class="form-check-input"  {{ old('active', $model->active ?? false) ? 'checked' : '' }}  style="padding: 0.7rem;" />
                 </div>
+                
             </div>
             </div>
             <div class="text-md-end">

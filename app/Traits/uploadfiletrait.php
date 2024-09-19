@@ -10,4 +10,5 @@ trait UploadFileTrait
     
         $file->move($path, $file_name);
         return $file_name;
+        
     }}

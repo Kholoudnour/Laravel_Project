@@ -11,21 +11,19 @@ class PublicController extends Controller
 {
     public function index()
     {
-            $categories = Category::limit(5)->with('latest_topic')->get();
-            
-            // dd($categories);
-            $topics = Topic::with('category')
+        $categories = Category::limit(5)->with('latest_topic')->get();
+        // dd($categories);
+        $topics = Topic::with('category')
                 ->latest()
                 ->take(3)
                 ->get();
-                //  dd($topics);
-   
-            $featuredtopics = Topic::with('category')
+        //  dd($topics);
+        $featuredtopics = Topic::with('category')
                 ->where('trending', true)
                 ->limit(2)
                 ->get();
                 
-            $testimonials = Testimonial::where('published', 1)
+        $testimonials = Testimonial::where('published', 1)
                 ->latest()
                 ->take(3)
                 ->get();
@@ -43,14 +41,12 @@ class PublicController extends Controller
         return view('testimonials', compact('testimonials'));
     }
 
-
     public function topicslisting()
     {
-        $topics = Topic::paginate(3);
+        $topics = Topic::paginate(4);
         $trendingtopics = Topic::orderBy('trending')->limit(1)->get();
         return view('topics-listing',compact('topics', 'trendingtopics'));
     }
-
 
     public function category()
     {
@@ -58,15 +54,14 @@ class PublicController extends Controller
     }
 
 
-    public function topicsdetail($id)
+    public function topicsdetail()
     {
-        $topic = Topic::findOrFail($id);
+        // $topic = Topic::get();
         $topics = topic::get();
         $categories = Category::all();
         
-        return view('topics-detail',compact('topics', 'categories', 'topic'));
+        return view('topics-detail',compact('topics', 'categories'));
     }
-
 
     public function contact()
     {

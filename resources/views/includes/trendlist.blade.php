@@ -20,7 +20,7 @@
                                         <span class="badge bg-finance rounded-pill ms-auto">30</span>
                                     </div>
 
-                                    <img src="{{asset('assets/images/topics/undraw_Finance_re_gnv2.png')}}" class="custom-block-image img-fluid" alt="">
+                                    <img src="{{asset('admin/assests/images/topics/' . $topic->image)}}" class="custom-block-image img-fluid" alt="">
                                 </a>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                         <div class="col-lg-6 col-md-6 col-12 mt-lg-3">
                             <div class="custom-block custom-block-overlay">
                                 <div class="d-flex flex-column h-100">
-                                    <img src="{{asset('assets/images/businesswoman-using-tablet-analysis.jpg')}}" class="custom-block-image img-fluid" alt="">
+                                    <img src="{{asset('admin/assests/images/topics/' . $topic->image)}}" class="custom-block-image img-fluid" alt="">
                                     <div class="custom-block-overlay-text d-flex">
                                         <div>
                                             

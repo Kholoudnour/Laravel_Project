@@ -47,8 +47,9 @@ class TestimonialController extends Controller
             'published' => 'nullable|boolean',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
+        $data['image'] = $this->uploadFile($request->image, 'admin/assests/images/testimonials');
+
         Testimonial::create($data);
-        $data['image'] = $this->uploadFile($request->image, 'admin/assests/images/testimonials/');
         return redirect()->route('testimonials.index');
     }
     
@@ -80,8 +81,10 @@ class TestimonialController extends Controller
             'published' => 'nullable|boolean',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
     ]);
-         Testimonial::where('id', $id)->update($data);
-         $file_name = ($request->hasFile('image')) ? $this->uploadFile($request['image'], 'admin/assests/images/testimonials/'):$request['old_image'];
+    if ($request->hasFile('image')) {
+        $data['image'] = $this->uploadFile($request->image,'admin/assests/images/testimonials');
+    }
+         Testimonial::where('id', $id)->update($data);  
          return redirect()->route('testimonials.index');
     }
 

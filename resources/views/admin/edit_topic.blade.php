@@ -75,8 +75,8 @@
                 <div class="col-md-10">
                     <input type="file" name="image" class="form-control" style="padding: 0.7rem; margin-bottom: 10px;" />
                     @if($topic->image)
-                        <img src="{{ asset('assests/images/topics/' . $topic->image) }}" alt="Topic Image" style="width: 10rem;">
-                    @endif
+                       <img src="{{ asset('admin/assests/images/topics/' . $topic->image) }}" alt="Topic Image" style="width: 10rem;">
+                       @endif
                     @error('image')
                         <div class="alert alert-warning">{{ $message }}</div>
                     @enderror

@@ -11,7 +11,7 @@
                 <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                     <div class="row mx-md-5">
                         <div class="col-md-4 testimonials">
-                            <img class="d-block rounded-3" src="{{ asset('admin/assets/images/testimonials/' . $testimonial->image) }}" alt="Testimonial image">
+                            <img class="d-block rounded-3" src="{{ asset('admin/assests/images/testimonials/' . $testimonial->image) }}" alt="Testimonial image">
                         </div>
                         <div class="col-md-8 px-md-5 d-flex flex-column justify-content-center">
                             <h3>{{ $testimonial->name }}<br><strong class="date">{{ $testimonial->created_at->format('d/m/Y') }}</strong></h3>

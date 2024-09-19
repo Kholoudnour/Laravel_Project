@@ -8,8 +8,9 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="{{ route('index') }}">Homepage</a></li>
                                     @foreach($topics as $topic)
-                                    <li class="breadcrumb-item active" aria-current="page">{{ $topic->title }}</li>
                                     @endforeach
+
+                                    <li class="breadcrumb-item active" aria-current="page">{{ $topic->title }}</li>
 
                                 </ol>
                             </nav>
@@ -22,7 +23,7 @@
                                 <a href="#top" class="custom-icon bi-bookmark smoothscroll"></a>
                             </div>
                         </div>
-                          
+
                         <div class="col-lg-5 col-12">
                             <div class="topics-detail-block bg-white shadow-lg">
                                 <img src="{{asset('assets/images/topics/undraw_Remote_design_team_re_urdx.png')}}" class="topics-detail-block-image img-fluid">

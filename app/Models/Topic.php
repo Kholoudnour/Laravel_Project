@@ -24,13 +24,13 @@ class Topic extends Model
             return $this->belongsTo(Category::class);
             
         }
-        public static function boot()
-{
-    parent::boot();
+        // public static function boot()
+// {
+    // parent::boot();
 
-    // Automatically generate slug from title before saving
-    static::saving(function ($topic) {
-        $topic->slug = Str::slug($topic->title);
-    });
-}
+    // // Automatically generate slug from title before saving
+    // static::saving(function ($topic) {
+    //     $topic->slug = Str::slug($topic->title);
+    // });
+
 }

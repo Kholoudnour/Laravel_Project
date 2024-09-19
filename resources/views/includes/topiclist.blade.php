@@ -10,7 +10,7 @@
                 @foreach($topics as $topic)
                     <div class="custom-block custom-block-topics-listing bg-white shadow-lg mb-5">
                         <div class="d-flex">
-                            <img src="{{ asset('storage/' . $topic->image) }}" class="custom-block-image img-fluid" alt="">
+                            <img src="{{ asset('admin/assests/images/topics/' . $topic->image) }}" class="custom-block-image img-fluid" alt="">
                             <div class="custom-block-topics-listing-info d-flex">
                                 <div>
                                     <h5 class="mb-2">{{ $topic->title }}</h5>

@@ -21,12 +21,12 @@ class TopicFactory extends Factory
     {
         return [
             'title' => fake()->randomElement(['Software', 'Backend', 'Laravel', 'Java Script']),
-            'category_id'  => fake()->numberBetween(1, 2),
+            'category_id'  => fake()->numberBetween(1, 2, 3, 4),
             'category' => fake()->randomElement(['Computer Science', 'Prograamming', 'Cloud Engineering', 'Database']),
             'content' =>   fake()->text(),
             'trending' => true,
             'published' => true,
-            'image' => basename(fake()->image()),
+            // 'image' => basename(fake()->image()),
         ];
     }
 }

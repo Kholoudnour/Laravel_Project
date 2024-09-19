@@ -34,7 +34,7 @@
                             <td>{{$user['username']}}</td>
                             <td>{{$user['email']}}</td>
                             <td>{{$user['phone']}}</td>
-                            <td>{{$user['active']== 'yes' ? 'Yes' : 'No' }}</td>
+                            <td>{{$user['active']== '1' ? "Yes" : "No" }}</td>
                             <td class="text-center"><a class="text-decoration-none text-dark" href="{{route('admin.users.edit',$user['id'])}}"><img src="{{asset('admin/assests/images/edit-svgrepo-com.svg')}}"></a></td>
                         </tr>
                         @endforeach

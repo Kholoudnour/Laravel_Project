@@ -38,7 +38,7 @@
                 <div class="col-md-10">
                     <input type="file" name="image" class="form-control" style="padding: 0.7rem; margin-bottom: 10px;" />
                     @if($testimonial->image)
-                        <img src="{{ asset('admin/assets/images/testimonials/' . $testimonial->image) }}" alt="Testimonial Image" style="width: 10rem;">
+                        <img src="{{ asset('admin/assests/images/testimonials/' . $testimonial->image) }}" alt="{{ $testimonial->name }}" style="width: 10rem;">
                     @endif
                 </div>
             </div>
