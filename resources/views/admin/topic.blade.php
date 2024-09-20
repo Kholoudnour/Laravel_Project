@@ -36,7 +36,7 @@
                             <td><a class="text-decoration-none text-dark" href="{{ route('topic.show', $topic['id']) }}">{{ $topic->title }}</a></td>
                             <td>{{ $topic->category }}</td>
                             <td>{{ Str::limit($topic->content, 10) }}...</td>
-                            <td>{{ $topic->views ?? 0 }}</td>
+                            <td>{{ $topic->views ?? 10 }}</td>
                             <td>{{$topic['published']=="1" ? "Yes": "NO"}}</td> 
                             <td>{{$topic['trending']=="1" ? "Yes": "NO"}}</td>
                             <td><a href= "{{route('topic.show', $topic['id'])}}">Show</a></td>

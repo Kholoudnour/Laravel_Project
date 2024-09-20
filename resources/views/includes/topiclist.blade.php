@@ -28,24 +28,48 @@
             </div>
 
             <div class="col-lg-12 col-12">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center mb-0">
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true">Prev</span>
-                            </a>
-                        </li>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center mb-0">
+            {{-- Previous Page Link --}}
+            @if ($topics->onFirstPage())
+                <li class="page-item disabled">
+                    <span class="page-link" aria-label="Previous">
+                        <span aria-hidden="true">Prev</span>
+                    </span>
+                </li>
+            @else
+                <li class="page-item">
+                    <a class="page-link" href="{{ $topics->previousPageUrl() }}" aria-label="Previous">
+                        <span aria-hidden="true">Prev</span>
+                    </a>
+                </li>
+            @endif
 
-                        <li class="page-item active" aria-current="page">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        
-                        <!-- Add pagination links dynamically -->
-                    
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">Next</span>
-                            </a>
+            {{-- Pagination Elements --}}
+            @foreach ($topics->links()->elements[0] as $page => $url)
+                <li class="page-item {{ $topics->currentPage() == $page ? 'active' : '' }}">
+                    <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                </li>
+            @endforeach
+
+            {{-- Next Page Link --}}
+            @if ($topics->hasMorePages())
+                <li class="page-item">
+                    <a class="page-link" href="{{ $topics->nextPageUrl() }}" aria-label="Next">
+                        <span aria-hidden="true">Next</span>
+                    </a>
+                </li>
+            @else
+                <li class="page-item disabled">
+                    <span class="page-link" aria-label="Next">
+                        <span aria-hidden="true">Next</span>
+                    </span>
+                </li>
+            @endif
+        </ul>
+    </nav>
+</div>
+
                         </li>
                     </ul>
                 </nav>

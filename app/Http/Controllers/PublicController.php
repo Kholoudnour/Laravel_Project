@@ -54,13 +54,14 @@ class PublicController extends Controller
     }
 
 
-    public function topicsdetail()
+    public function topicsdetail($id)
     {
-        // $topic = Topic::get();
-        $topics = topic::get();
+        $topic = Topic::findOrFail($id);
+        $topics = Topic::all() ;   
+        // dd($topic);   
         $categories = Category::all();
         
-        return view('topics-detail',compact('topics', 'categories'));
+        return view('topics-detail',compact('topics', 'categories', 'topic'));
     }
 
     public function contact()

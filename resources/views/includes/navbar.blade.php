@@ -53,7 +53,7 @@
                             <li><a class="dropdown-item" href="{{ route('contact') }}">Contact Us</a></li>
                             <li><a class="dropdown-item" href="{{ route('testimonials') }}">Our Client Says</a></li>
                             <li><a class="dropdown-item" href="t{{ route('topics-listing') }}">Topics Listing</a></li>
-                            <li><a class="dropdown-item" href="{{ route('topics-detail') }}">Topics details</a></li>
+                            <li><a class="dropdown-item" href="{{ route('topics-detail', ['id' => $topic->id]) }}">Topics details</a></li>
                             <li><a class="dropdown-item" href="404.html">404 page</a></li>
                         </ul>
                     </li>
