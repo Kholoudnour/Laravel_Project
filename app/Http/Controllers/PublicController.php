@@ -44,7 +44,7 @@ class PublicController extends Controller
     public function topicslisting()
     {
         $topics = Topic::paginate(4);
-        $trendingtopics = Topic::orderBy('trending')->limit(1)->get();
+        $trendingtopics = Topic::orderBy('trending')->limit(2)->get();
         return view('topics-listing',compact('topics', 'trendingtopics'));
     }
 

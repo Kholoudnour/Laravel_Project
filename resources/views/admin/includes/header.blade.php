@@ -20,27 +20,18 @@
                 </a>
                 <div class="dropdown-menu dropdown-center navbar-dropdown" aria-labelledby="UserDropdown">
                   <div class="dropdown-header text-center">
-                  @if(isset($user))
-
+                  @if(Auth::check())
                   <img class="img-md rounded-circle" src="{{asset('admin/assests/images/avatar-default.svg')}}" alt="Profile image"
-                      width="80" height="80" />
-                    <!-- Display user name -->
-                        <p class="mb-1 mt-3 font-weight-semibold">{{ $user->name }}</p>
-                        <!-- Display user email -->
-                        <p class="fw-light text-muted mb-0">{{ $user->email }}</p>
-                        </div>
-                        @else
-                        @endif
-
-                      <!-- Fallback content if user is not available -->
-                      <p class="mb-1 mt-3 font-weight-semibold">Guest</p>
-                      <p class="fw-light text-muted mb-0">Not logged in</p>
+                    width="80" height="80" />
+                      <p class="mb-1 mt-3 font-weight-semibold">{{ Auth::user()->name }}</p>
+                      <p class="fw-light text-muted mb-0">{{ Auth::user()->email }}</p>
+                    @else
+                      <p class="text-muted">Guest not logged in</p>
+                    @endif
                       <a class="dropdown-item">My Profile</a>
                       <a class="dropdown-item">Sign Out</a>
                       <p class="footer" style="padding-top: 15px; font-size: 9px; text-align: center">
                         Privacy Policy . Terms . Cookies
-                     
-
                   </p>
                 </div>
               </li>

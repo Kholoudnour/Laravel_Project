@@ -22,9 +22,9 @@
                 </div>
             </div>
 
-            <div class="col-lg-5 col-12">
-                <div class="topics-detail-block bg-white shadow-lg">
-                    <img src="{{ asset('assets/images/topics/undraw_Remote_design_team_re_urdx.png') }}" class="topics-detail-block-image img-fluid">
+            <div class="col-lg-6 col-12">
+                <div class="topics-detail-block">
+                    <img src="{{ asset('admin/assests/images/topics/' . $topic->image) }}" style="width:100%; max-width:600px;"class="topics-detail-block-image img-fluid">
                 </div>
             </div>
 

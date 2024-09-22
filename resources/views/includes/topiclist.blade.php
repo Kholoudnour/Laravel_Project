@@ -19,7 +19,6 @@
 
                                     <a href="{{ route('topics-detail', $topic->id) }}" class="btn custom-btn mt-3 mt-lg-4">Learn More</a>
                                 </div>
-
                                 <span class="badge bg-info rounded-pill ms-auto">{{ $topic->views }}</span>
                             </div>
                         </div>
@@ -69,12 +68,7 @@
         </ul>
     </nav>
 </div>
-
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-        </div>
+ </div>
     </div>
-</section>
+        </div>
+            </section>

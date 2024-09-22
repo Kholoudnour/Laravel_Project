@@ -58,12 +58,22 @@ class AuthController extends Controller
              'password' => 'required|string',
 
          ]);
+         
          Log::warning('Login failed', ['username' => $request->input('username')]);
          if (Auth::attempt($credentials)) 
          $request->session()->regenerate();{
         Log::info('User logged in successfully', ['user_id' => Auth::id()]);
-            
          return redirect('admin/users');
-         }}
-        
+         }
+     }
+    public function profile()
+     {
+        if (!Auth::check()) {
+        return redirect()->route('login'); // Redirect to login if not authenticated
+          }
+         // Get the currently authenticated user
+          $user = Auth::user();
+         // Pass the user data to the view
+          return view('profile', compact('user'));
+     }
         }

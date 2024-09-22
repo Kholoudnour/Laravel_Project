@@ -51,17 +51,7 @@ class UserController extends Controller
         }
     }
 
-        public function profile()
-    {
-            if (!Auth::check()) {
-        return redirect()->route('login'); // Redirect to login if not authenticated
-            }
-        // Get the currently authenticated user
-        $user = Auth::user();
-
-        // Pass the user data to the view
-        return view('profile', compact('user'));
-    }
+ 
     /**
      * Display the specified resource.
      */

@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [AdminUserController::class, 'profile'])->name('profile');
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
 });
 // 'admin' prefix 
 Route::prefix('admin') 
