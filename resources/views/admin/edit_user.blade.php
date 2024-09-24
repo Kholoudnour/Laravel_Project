@@ -76,7 +76,7 @@
                 <label for="active" class="form-label col-md-2 fw-bold text-md-end">Active:</label>
                 <div class="col-md-10">
                 <input type="hidden" name="active" value="0"> <!-- Hidden field for unchecked state -->
-                <input type="checkbox" name="active" value="1" class="form-check-input"  {{ old('active', $model->active ?? false) ? 'checked' : '' }}  style="padding: 0.7rem;" />
+                <input type="checkbox" name="active" value="1" class="form-check-input"  {{ old('active', $user->active ?? false) ? 'checked' : '' }}  style="padding: 0.7rem;" />
                 </div>
                 
             </div>

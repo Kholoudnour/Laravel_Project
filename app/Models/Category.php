@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $table = 'categories';
+ 
     protected $fillable = [
         'name',
         'timestamp',
     ];
     public function topics()
     {
-        return $this->hasMany(Topic::class);
+        return $this->hasMany(Topic::class, 'foreginKey', 'localKey');
     }
     public function latest_topic()
     {

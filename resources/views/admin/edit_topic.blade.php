@@ -55,7 +55,7 @@
             <div class="form-group mb-3 row">
                 <label for="trending" class="form-label col-md-2 fw-bold text-md-end">Trending:</label>
                 <div class="col-md-10">
-                <input type="hidden" name="trending" value="0"> <!-- Hidden field for unchecked state -->
+                <input type="hidden" name="trending" value="0"> 
                 <input type="checkbox" name="trending" value="1" class="form-check-input" style="padding: 0.7rem;" {{ old('trending', $topic->trending) ? 'checked' : '' }} />
                 </div>
             </div>
@@ -63,7 +63,7 @@
             <div class="form-group mb-3 row">
                 <label for="published" class="form-label col-md-2 fw-bold text-md-end">Published:</label>
                 <div class="col-md-10">
-                <input type="hidden" name="published" value="0"> <!-- Hidden field for unchecked state -->
+                <input type="hidden" name="published" value="0"> 
                 <input type="checkbox" name="published" value="1" class="form-check-input" style="padding: 0.7rem;" {{ old('published', $topic->published) ? 'checked' : '' }} />
                 </div>
             </div>

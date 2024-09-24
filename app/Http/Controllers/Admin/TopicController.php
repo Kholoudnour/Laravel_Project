@@ -98,7 +98,7 @@ class TopicController extends Controller
         if ($request->hasFile('image')) {
             $data['image'] = $this->uploadFile($request->image, 'admin/assests/images/topics');
             }
-        $data['published'] = isset($request->published);
+  
         Topic::where('id', $id)->update($data);
         return redirect()->route('topic.index');
     }

@@ -86,7 +86,7 @@ class UserController extends Controller
         // dd($data); 
         Log::info($request->all());
         $data['password'] = Hash::make($data['password']);
-        $data['active'] = $request->has('active') ? 1 : 0;
+        // $data['active'] = $request->has('active') ? 1 : 0;
         $user = User::findOrFail($id);
             User::where('id', $id)->update($data);
             return redirect()->route('admin.users.index');

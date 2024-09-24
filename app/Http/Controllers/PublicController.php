@@ -53,7 +53,6 @@ class PublicController extends Controller
         return view('category');
     }
 
-
     public function topicsdetail($id)
     {
         $topic = Topic::findOrFail($id);
